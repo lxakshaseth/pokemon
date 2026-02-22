@@ -1,20 +1,18 @@
-const express = require("express");
-const { spawn } = require("child_process");
+import express from "express";
+import { spawn } from "child_process";
 
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Health endpoint (Render ke liye)
 app.get("/", (req, res) => {
   res.send("Pokemon MCP Server running on Render 🚀");
 });
 
-// Optional health route
 app.get("/health", (req, res) => {
   res.status(200).send("OK");
 });
 
-// MCP server background me run karo
+// Start MCP server in background
 spawn("node", ["dist/index.js"], {
   stdio: "inherit",
 });

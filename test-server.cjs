@@ -1,8 +1,8 @@
 const { spawn } = require('child_process');
 const readline = require('readline');
 
-// Spawn the MCP server
-const server = spawn('npx', ['tsx', 'index.ts'], {
+// 🚀 Spawn the MCP server (Windows safe)
+const server = spawn('node', ['dist/index.js'], {
   stdio: ['pipe', 'pipe', 'pipe']
 });
 
@@ -53,12 +53,12 @@ setTimeout(() => {
     params: {},
     id: 2
   };
-  
+
   console.log('\nSending list tools request...');
   server.stdin.write(JSON.stringify(listToolsRequest) + '\n');
 }, 1000);
 
-// Clean shutdown after 3 seconds
+// Clean shutdown
 setTimeout(() => {
   console.log('\nShutting down...');
   server.kill();
